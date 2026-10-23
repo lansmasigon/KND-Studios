@@ -1,0 +1,5 @@
+.page-shell {
+  width: 100%;
+  background: var(--page-bg);
+  color: var(--primary);
+}
