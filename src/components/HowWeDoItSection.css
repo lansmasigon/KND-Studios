@@ -18,7 +18,7 @@
 }
 
 .process-card {
-  background: transparent;
+  background: var(--primary);
   border: 1px solid rgba(255, 65, 54, 0.42);
   padding: 1.4rem 1.2rem 1.1rem;
   min-height: 260px;
@@ -29,7 +29,7 @@
 
 .process-title {
   margin: 0;
-  color: var(--primary);
+  color: white;
   font-size: clamp(2.2rem, 2.8vw, 4rem);
   line-height: 0.9;
   letter-spacing: -0.08em;
@@ -39,7 +39,7 @@
 
 .process-card p {
   margin: 22px 0 0;
-  color: var(--primary);
+  color: white;
   font-size: 1rem;
   line-height: 1.45;
   opacity: 0.92;
