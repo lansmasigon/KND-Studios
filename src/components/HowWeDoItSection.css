@@ -7,7 +7,7 @@
 }
 
 .section-header.centered {
-  justify-content: center;
+  justify-content: left;
 }
 
 .process-grid {
@@ -20,8 +20,9 @@
 .process-card {
   background: var(--primary);
   border: 1px solid rgba(255, 65, 54, 0.42);
+  border-radius: 8px;
   padding: 1.4rem 1.2rem 1.1rem;
-  min-height: 260px;
+  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
