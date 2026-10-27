@@ -34,6 +34,15 @@
   color: rgba(20, 20, 20, 0.82);
 }
 
+.topbar-links a {
+  transition: color 0.2s ease;
+}
+
+.topbar-links a:hover,
+.topbar-links a:focus-visible {
+  color: var(--primary);
+}
+
 .hero-layout {
   display: grid;
   grid-template-columns: minmax(0, 2.3fr) minmax(250px, 0.7fr);
