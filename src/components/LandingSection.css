@@ -20,6 +20,13 @@
   font-size: clamp(1.2rem, 1.8vw, 2.3rem);
   line-height: 1;
   color: var(--primary);
+  display: inline-block;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.brand-mark:hover {
+  transform: translateX(4px);
+  opacity: 0.85;
 }
 
 .topbar-links {
@@ -34,20 +41,33 @@
   color: rgba(20, 20, 20, 0.82);
 }
 
-.topbar-links a {
-  transition: color 0.2s ease;
+.topbar-link {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.25em;
+  line-height: 1.25em;
 }
 
-.topbar-links a:hover,
-.topbar-links a:focus-visible {
+.topbar-link-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.topbar-link-track span:last-child {
   color: var(--primary);
+}
+
+.topbar-link:hover .topbar-link-track,
+.topbar-link:focus-visible .topbar-link-track {
+  transform: translateY(-50%);
 }
 
 .hero-layout {
   display: grid;
   grid-template-columns: minmax(0, 2.3fr) minmax(250px, 0.7fr);
   gap: 20px;
-  align-items: start;
+  align-items: stretch;
   min-height: calc(100vh - 120px);
   padding-top: 10px;
 }
@@ -55,15 +75,17 @@
 .hero-copy {
   margin-top: 0;
   padding-top: 0;
+  overflow: visible;
 }
 
 .hero-copy h1 {
   margin: 0 0 18px;
+  padding-right: 0.08em;
   font-family: 'Arial Black', 'Segoe UI', sans-serif;
   text-transform: uppercase;
-  letter-spacing: -0.09em;
-  font-size: clamp(6.8rem, 7.5vw, 12.5rem);
-  line-height: 0.90;
+  letter-spacing: -0.08em;
+  font-size: clamp(4.2rem, 7.2vw, 12rem);
+  line-height: 0.9;
   color: var(--primary);
 }
 

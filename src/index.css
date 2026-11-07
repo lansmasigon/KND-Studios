@@ -23,7 +23,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -31,6 +31,12 @@ body {
   min-width: 320px;
   background: var(--page-bg);
   color: var(--primary);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--primary);
+  color: #ffffff;
 }
 
 button,

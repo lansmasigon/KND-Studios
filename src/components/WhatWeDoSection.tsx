@@ -1,51 +1,55 @@
-import { useState } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
+import { servicesData } from '../data/servicesData'
+import { smoothScroll } from '../utils/smoothScroll'
 import './WhatWeDoSection.css'
 
-const services = [
-  {
-    title: 'WEB DEVELOPMENT',
-    description: 'Fast, accessible websites and web apps built to move your business forward.',
-  },
-  {
-    title: 'AUTOMATION',
-    description: 'We streamline repetitive tasks and internal workflows so your team can focus on growth.',
-  },
-  {
-    title: 'WEB DESIGN',
-    description: 'Clean, strategic design systems that make your brand memorable and easy to trust.',
-  },
-  {
-    title: 'SYSTEMS DEVELOPMENT',
-    description: 'Custom tools and product systems that simplify operations and support long-term scale.',
-  },
-]
+interface WhatWeDoSectionProps {
+  onSelectService: (slug: string) => void
+}
 
-export default function WhatWeDoSection() {
-  const [activeService, setActiveService] = useState<string | null>(null)
+export default function WhatWeDoSection({ onSelectService }: WhatWeDoSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const unsub = smoothScroll.subscribe(() => {
+      if (!sectionRef.current) return
+      const rect = sectionRef.current.getBoundingClientRect()
+      const vh = window.innerHeight
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (vh * 0.85)))
+      sectionRef.current.style.setProperty(
+        '--section-progress',
+        progress.toFixed(3)
+      )
+    })
+
+    return () => unsub()
+  }, [])
 
   return (
-    <section id="services" className="section what-we-do">
+    <section id="services" ref={sectionRef} className="section what-we-do">
       <div className="section-header">
         <h2>WHAT WE DO</h2>
         <div className="service-button">Our Services</div>
       </div>
 
       <div className="service-list" aria-label="Services list">
-        {services.map((service) => {
-          const selected = activeService === service.title
-
-          return (
-            <button
-              key={service.title}
-              type="button"
-              className={`service-row ${selected ? 'active' : ''}`}
-              onClick={() => setActiveService(service.title)}
-            >
+        {servicesData.map((service, idx) => (
+          <button
+            key={service.slug}
+            type="button"
+            className="service-row"
+            style={{ '--row-idx': idx } as CSSProperties}
+            onClick={() => onSelectService(service.slug)}
+          >
+            <div className="service-title-wrap">
               <div className="service-title">{service.title}</div>
-              <div className="service-description">{service.description}</div>
-            </button>
-          )
-        })}
+              <span className="service-minimal-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </div>
+            <div className="service-description">{service.description}</div>
+          </button>
+        ))}
       </div>
     </section>
   )
